@@ -1,0 +1,77 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+x_values = np.linspace(0,1, 1001)
+
+
+x_feed = 0.05
+
+## Stripping
+x_strip = np.linspace(0.013739,x_feed,100)
+y_strip = 2.019*x_strip - 0.014
+
+## Rectifying Line
+x_rect = np.linspace(x_feed, 0.6, 100)
+y_rect = 0.93*x_rect + 0.04
+
+#equlibrium line
+y= (1.946*x_values)/(1 + (1.9546-1)*x_values)
+
+
+#rectafying line
+def func_y_1(x):
+    if x <= 0.6: 
+        return 0.93*x + 0.04
+
+y_1 = []
+
+for i in range(len(x_values)):
+    y_1.append(func_y_1(x_values[i]))
+
+#starting point
+start_point = (1.946*0.05)/(1 + (1.9546-1)*0.05)
+
+#stripping line
+def func_y_2(x):
+    if x <= 0.3:
+        return 2.019*x - 0.014
+
+y_2 = []
+
+for i in range(len(x_values)):
+    y_2.append(func_y_2(x_values[i]))
+
+
+#plotting the curves
+plt.plot(x_values, y, label= 'Equlibrium Line', color = 'purple')
+plt.plot(x_values, x_values, label = 'XY Line', color = 'black')
+plt.plot(x_rect, y_rect, label = 'Rectifying Line', color = 'orange')
+plt.plot(x_strip, y_strip, label = 'Stripping Line', color = 'green')
+
+#feed line/ q- line 
+
+plt.axvline(0.05, label = 'Feed - Line')
+#plotting starting and ending point (if we want to add them)
+# plt.plot(0.05 , start_point, 'o') 
+
+#Staircase
+plt.axhline(0.6, xmax=0.6, xmin=0.436923)
+plt.axvline(0.436923, ymax=0.6,ymin=0.446338)
+plt.axhline(0.446338, xmax=0.436923, xmin=0.2936578)
+plt.axvline(0.2936578, ymax=0.446338, ymin=0.313102)
+
+
+
+
+
+plt.minorticks_on()
+plt.grid(which = 'major', linewidth = 1)
+plt.grid(which ='minor', linewidth = 0.1 )
+plt.legend()
+plt.title('')
+plt.ylabel('xb (fraction of water)')
+plt.xlabel('xa (fraction of isopropanol)')
+plt.xlim(0,1)
+plt.ylim(0,1)
+plt.show()
+
