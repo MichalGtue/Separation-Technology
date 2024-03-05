@@ -54,23 +54,26 @@ plt.vlines(0.05, ymin=0, ymax=1, label = 'Feed - Line')
 #plotting starting and ending point (if we want to add them)
 # plt.plot(0.05 , start_point, 'o') 
 
-def func_loop(xxxxxx):
-    output = (-5000*xxxxxx)/(4773*xxxxxx-9730)
-    return output
-def func_loop2(xx):
-    return 0.93*xx + 0.04
-
 #Staircase
-ini_val_loop = 0.6
-ymin_storage = 0.6
-xmin_val = func_loop(ini_val_loop)
-plt.hlines(ini_val_loop, xmax=ini_val_loop, xmin=xmin_val)
-for i in range(7):
-    xmin_val = func_loop(ini_val_loop)
-    plt.vlines(xmin_val, ymax=ini_val_loop, ymin=func_loop2(xmin_val))
-    dummy_var =  func_loop(0.93*xmin_val+ 0.04)
-    plt.hlines(func_loop2(xmin_val), xmax=xmin_val, xmin=dummy_var)   
-    ini_val_loop = 0.93*xmin_val+ 0.04
+
+def func1(x):
+    return (-5000 * x) / (4773 * x - 9730)
+def func2(x):
+    return 0.93 * x + 0.04
+initial_value = 0.6
+y_min_storage = 0.6
+
+x_min_value = func1(initial_value)
+plt.hlines(initial_value, xmax=initial_value, xmin=x_min_value)
+
+for _ in range(7):
+    x_min_value = func1(initial_value)
+    plt.vlines(x_min_value, ymax=initial_value, ymin=func2(x_min_value))
+    new_y_value = func2(x_min_value)
+    plt.hlines(new_y_value, xmax=x_min_value, xmin=func1(0.93 * x_min_value + 0.04))
+    initial_value = 0.93 * x_min_value + 0.04
+
+# Show the plot
 
 
 
