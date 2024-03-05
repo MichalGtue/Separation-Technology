@@ -15,7 +15,7 @@ x_rect = np.linspace(x_feed, 0.6, 100)
 y_rect = 0.93*x_rect + 0.04
 
 #equlibrium line
-y= (1.946*x_values)/(1 + (1.9546-1)*x_values)
+y = (1.946*x_values)/(1 + (1.9546-1)*x_values)
 
 
 #rectafying line
@@ -54,11 +54,24 @@ plt.axvline(0.05, label = 'Feed - Line')
 #plotting starting and ending point (if we want to add them)
 # plt.plot(0.05 , start_point, 'o') 
 
+def func_loop(xxxxxx):
+    output = (-5000*xxxxxx)/(4773*xxxxxx-9730)
+    return output
+def func_loop2(xx):
+    return 0.93*xx + 0.04
+
 #Staircase
-plt.axhline(0.6, xmax=0.6, xmin=0.436923)
-plt.axvline(0.436923, ymax=0.6,ymin=0.446338)
-plt.axhline(0.446338, xmax=0.436923, xmin=0.2936578)
-plt.axvline(0.2936578, ymax=0.446338, ymin=0.313102)
+ini_val_loop = 0.6
+ymin_storage = 0.6
+xmin_val = func_loop(ini_val_loop)
+plt.axhline(ini_val_loop, xmax=ini_val_loop, xmin=xmin_val)
+for i in range(7):
+    xmin_val = func_loop(ini_val_loop)
+    plt.axvline(xmin_val, ymax=ini_val_loop, ymin=func_loop2(xmin_val))
+    dummy_var =  func_loop(0.93*xmin_val+ 0.04)
+    plt.axhline(func_loop2(xmin_val), xmax=xmin_val, xmin=dummy_var)   
+    ini_val_loop = 0.93*xmin_val+ 0.04
+
 
 
 
