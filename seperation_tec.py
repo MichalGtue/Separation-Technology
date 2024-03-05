@@ -8,11 +8,13 @@ x_feed = 0.05
 
 ## Stripping
 x_strip = np.linspace(0.013739,x_feed,100)
-y_strip = 2.019*x_strip - 0.014
+#y_strip = 2.019*x_strip - 0.014
+y_strip = (185.96/92.1)*x_strip - ((93.86/92.1)*0.014)
 
 ## Rectifying Line
 x_rect = np.linspace(x_feed, 0.6, 100)
-y_rect = 0.93*x_rect + 0.04
+#y_rect = 0.93*x_rect + 0.04
+y_rect = (14.124/15.124)*x_rect + (0.6/15)
 
 #equlibrium line
 y = (1.946*x_values)/(1 + (1.9546-1)*x_values)
@@ -50,6 +52,7 @@ plt.plot(x_strip, y_strip, label = 'Stripping Line', color = 'green')
 
 #feed line/ q- line 
 
+
 plt.vlines(0.05, ymin=0, ymax=1, label = 'Feed - Line')
 #plotting starting and ending point (if we want to add them)
 # plt.plot(0.05 , start_point, 'o') 
@@ -73,13 +76,10 @@ for _ in range(7):
     plt.hlines(new_y_value, xmax=x_min_value, xmin=func1(0.93 * x_min_value + 0.04))
     initial_value = 0.93 * x_min_value + 0.04
 
+
+
+
 # Show the plot
-
-
-
-
-
-
 plt.minorticks_on()
 plt.grid(which = 'major', linewidth = 1)
 plt.grid(which ='minor', linewidth = 0.1 )
