@@ -50,7 +50,7 @@ plt.plot(x_strip, y_strip, label = 'Stripping Line', color = 'green')
 
 #feed line/ q- line 
 
-plt.axvline(0.05, label = 'Feed - Line')
+plt.vlines(0.05, ymin=0, ymax=1, label = 'Feed - Line')
 #plotting starting and ending point (if we want to add them)
 # plt.plot(0.05 , start_point, 'o') 
 
@@ -64,12 +64,12 @@ def func_loop2(xx):
 ini_val_loop = 0.6
 ymin_storage = 0.6
 xmin_val = func_loop(ini_val_loop)
-plt.axhline(ini_val_loop, xmax=ini_val_loop, xmin=xmin_val)
+plt.hlines(ini_val_loop, xmax=ini_val_loop, xmin=xmin_val)
 for i in range(7):
     xmin_val = func_loop(ini_val_loop)
-    plt.axvline(xmin_val, ymax=ini_val_loop, ymin=func_loop2(xmin_val))
+    plt.vlines(xmin_val, ymax=ini_val_loop, ymin=func_loop2(xmin_val))
     dummy_var =  func_loop(0.93*xmin_val+ 0.04)
-    plt.axhline(func_loop2(xmin_val), xmax=xmin_val, xmin=dummy_var)   
+    plt.hlines(func_loop2(xmin_val), xmax=xmin_val, xmin=dummy_var)   
     ini_val_loop = 0.93*xmin_val+ 0.04
 
 
@@ -82,9 +82,9 @@ plt.grid(which = 'major', linewidth = 1)
 plt.grid(which ='minor', linewidth = 0.1 )
 plt.legend()
 plt.title('')
-plt.ylabel('xb (fraction of water)')
-plt.xlabel('xa (fraction of isopropanol)')
-plt.xlim(0,1)
-plt.ylim(0,1)
+plt.ylabel('xb,w')
+plt.xlabel('xb,i')
+plt.xlim(0.04,0.6)
+plt.ylim(0.08,0.62)
 plt.show()
 
