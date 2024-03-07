@@ -95,15 +95,15 @@ for _ in range(8):
         plt.hlines(new_y_value, xmax=x_min_value, xmin=func1((185.96/92.1)*x_min_value - ((93.86/92.1)*0.014)))
     initial_value = (185.96/92.1)*x_min_value - ((93.86/92.1)*0.014)
 
-plt.vlines(0.014, ymin=0, ymax=1, linestyles='dashed', colors='teal')
+plt.vlines(0.014, ymin=0, ymax=1, linestyles='dashed', colors='teal', label='x-bottom')
 # Show the plot
 plt.minorticks_on()
 plt.grid(which = 'major', linewidth = 1)
 plt.grid(which ='minor', linewidth = 0.1 )
 plt.legend()
 plt.title('')
-plt.ylabel('xb,w')
-plt.xlabel('xb,i')
+plt.ylabel('x, i')
+plt.xlabel('y,i')
 plt.xlim(0.04,0.6)
 plt.ylim(0.08,0.62)
 plt.show()
